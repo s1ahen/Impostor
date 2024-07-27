@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imposter Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Imposter Game</h1>
+        <div id="game-setup">
+            <select id="category">
+                <option value="animals">Animals</option>
+                <option value="fruits">Fruits</option>
+                <option value="colors">Colors</option>
+                <option value="countries">Countries</option>
+                <option value="vehicles">Vehicles</option>
+            </select>
+            <input type="number" id="num-players" placeholder="Number of Players" min="3" max="10">
+            <select id="discussion-time">
+                <option value="120">2 minutes</option>
+                <option value="180">3 minutes</option>
+                <option value="300">5 minutes</option>
+            </select>
+            <button onclick="startGame()">Start Game</button>
+        </div>
+        <div id="game-play" style="display:none;">
+            <div id="player-words"></div>
+            <button id="reveal-button" onclick="revealWord()">Reveal Word</button>
+            <div id="timer" style="display:none;">5</div>
+        </div>
+        <div id="discussion-timer" style="display:none;">
+            Discussion time left: <span id="discussion-time-left"></span>
+        </div>
+        <div id="voting" style="display:none;">
+            <h2>Player <span id="voter-number"></span>, cast your vote:</h2>
+            <input type="text" id="vote-input" placeholder="Enter suspect's name">
+            <button onclick="submitVote()">Guess</button>
+        </div>
+        <div id="results" style="display:none;">
+            <h2>Voting Results</h2>
+            <div id="results-graph"></div>
+            <h3>The Imposter's Word: <span id="imposter-word"></span></h3>
+            <button onclick="restartGame()">Restart</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
