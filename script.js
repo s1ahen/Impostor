@@ -5,7 +5,7 @@ const words = {
     countries: ["Usa", "Canada", "Mexico", "Brazil", "Argentina"],
     vehicles: ["Car", "Truck", "Bicycle", "Motorcycle", "Airplane"]
 };
-const imposterWord = "kiwi";
+
 let numPlayers;
 let playerWords = [];
 let currentPlayer = 0;
@@ -25,12 +25,16 @@ function startGame() {
     }
 
     playerWords = [];
-    const commonWord = words[category][Math.floor(Math.random() * words[category].length)];
+    const commonWordIndex = Math.floor(Math.random() * words[category].length);
+    const commonWord = words[category][commonWordIndex];
     
     for (let i = 0; i < numPlayers; i++) {
         playerWords.push(commonWord);
     }
 
+    const imposterWordList = words[category].filter(word => word !== commonWord);
+    const imposterWord = imposterWordList[Math.floor(Math.random() * imposterWordList.length)];
+    
     imposterIndex = Math.floor(Math.random() * numPlayers);
     playerWords[imposterIndex] = imposterWord;
 
@@ -127,7 +131,7 @@ function showResults() {
         resultItem.innerHTML = `${suspect}: ${count} vote(s)`;
         resultsGraph.appendChild(resultItem);
     }
-    document.getElementById("imposter-word").innerHTML = imposterWord;
+    document.getElementById("imposter-word").innerHTML = playerWords[imposterIndex];
 }
 
 function restartGame() {
