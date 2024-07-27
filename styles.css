@@ -1,0 +1,47 @@
+body {
+    font-family: 'Roboto Mono', monospace;
+    background-color: #405D72;
+    color: #FFF8F3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    background-color: #758694;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+button {
+    background-color: #F7E7DC;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-family: 'Roboto Mono', monospace;
+}
+
+button:hover {
+    background-color: #FFF8F3;
+}
+
+input, select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #FFF8F3;
+    margin-top: 10px;
+    font-family: 'Roboto Mono', monospace;
+}
+
+#timer {
+    font-size: 2em;
+    margin-top: 10px;
+}
+
+#results-graph div {
+    margin: 5px 0;
+}
