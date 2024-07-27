@@ -1,9 +1,9 @@
 const words = {
-    animals: ["lion", "tiger", "bear", "elephant", "giraffe"],
-    fruits: ["apple", "banana", "cherry", "date", "elderberry"],
-    colors: ["red", "blue", "green", "yellow", "purple"],
-    countries: ["usa", "canada", "mexico", "brazil", "argentina"],
-    vehicles: ["car", "truck", "bicycle", "motorcycle", "airplane"]
+    animals: ["Lion", "Tiger", "Bear", "Elephant", "Giraffe", "Dog", "Cat", "Fish", "Bunny", "Snail"],
+    fruits: ["Apple", "Banana", "Cherry", "Date", "Elderberry", "Rasberry"],
+    colors: ["Red", "Blue", "Green", "Yellow", "Purple"],
+    countries: ["Usa", "Canada", "Mexico", "Brazil", "Argentina"],
+    vehicles: ["Car", "Truck", "Bicycle", "Motorcycle", "Airplane"]
 };
 const imposterWord = "kiwi";
 let numPlayers;
