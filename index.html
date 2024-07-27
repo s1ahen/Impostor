@@ -10,6 +10,13 @@
     <div class="container">
         <h1>Imposter Game</h1>
         <div id="game-setup">
+            <select id="language" onchange="changeLanguage()">
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+                <option value="fr">French</option>
+                <option value="de">German</option>
+                <option value="sv">Swedish</option>
+            </select>
             <select id="category">
                 <option value="animals">Animals</option>
                 <option value="fruits">Fruits</option>
@@ -19,7 +26,7 @@
             </select>
             <input type="number" id="num-players" placeholder="Number of Players" min="3" max="10">
             <select id="discussion-time">
-                <option value="120">2 minutes</option>
+                <option value="30">2 minutes</option>
                 <option value="180">3 minutes</option>
                 <option value="300">5 minutes</option>
             </select>
@@ -27,8 +34,8 @@
         </div>
         <div id="game-play" style="display:none;">
             <div id="player-words"></div>
-            <button id="reveal-button" onclick="revealWord()">Reveal Word</button>
             <div id="timer" style="display:none;">5</div>
+            <button id="reveal-button" onclick="revealWord()">Reveal Word</button>
         </div>
         <div id="discussion-timer" style="display:none;">
             Discussion time left: <span id="discussion-time-left"></span>

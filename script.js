@@ -1,9 +1,39 @@
 const words = {
-    animals: ["Lion", "Tiger", "Bear", "Elephant", "Giraffe", "Dog", "Cat", "Fish", "Bunny", "Snail"],
-    fruits: ["Apple", "Banana", "Cherry", "Date", "Elderberry", "Rasberry"],
-    colors: ["Red", "Blue", "Green", "Yellow", "Purple"],
-    countries: ["Usa", "Canada", "Mexico", "Brazil", "Argentina"],
-    vehicles: ["Car", "Truck", "Bicycle", "Motorcycle", "Airplane"]
+    en: {
+        animals: ["Lion", "Tiger", "Bear", "Elephant", "Giraffe", "Dog", "Cat", "Fish", "Bunny", "Snail"],
+        fruits: ["Apple", "Banana", "Cherry", "Date", "Elderberry", "Raspberry"],
+        colors: ["Red", "Blue", "Green", "Yellow", "Purple"],
+        countries: ["USA", "Canada", "Mexico", "Brazil", "Argentina"],
+        vehicles: ["Car", "Truck", "Bicycle", "Motorcycle", "Airplane"]
+    },
+    es: {
+        animals: ["León", "Tigre", "Oso", "Elefante", "Jirafa", "Perro", "Gato", "Pez", "Conejo", "Caracol"],
+        fruits: ["Manzana", "Banana", "Cereza", "Dátil", "Elderberry", "Frambuesa"],
+        colors: ["Rojo", "Azul", "Verde", "Amarillo", "Púrpura"],
+        countries: ["EE.UU.", "Canadá", "México", "Brasil", "Argentina"],
+        vehicles: ["Coche", "Camión", "Bicicleta", "Motocicleta", "Avión"]
+    },
+    fr: {
+        animals: ["Lion", "Tigre", "Ours", "Éléphant", "Girafe", "Chien", "Chat", "Poisson", "Lapin", "Escargot"],
+        fruits: ["Pomme", "Banane", "Cerise", "Datte", "Baie de sureau", "Framboise"],
+        colors: ["Rouge", "Bleu", "Vert", "Jaune", "Violet"],
+        countries: ["États-Unis", "Canada", "Mexique", "Brésil", "Argentine"],
+        vehicles: ["Voiture", "Camion", "Vélo", "Moto", "Avion"]
+    },
+    de: {
+        animals: ["Löwe", "Tiger", "Bär", "Elefant", "Giraffe", "Hund", "Katze", "Fisch", "Hase", "Schnecke"],
+        fruits: ["Apfel", "Banane", "Kirsche", "Dattel", "Holunderbeere", "Himbeere"],
+        colors: ["Rot", "Blau", "Grün", "Gelb", "Lila"],
+        countries: ["USA", "Kanada", "Mexiko", "Brasilien", "Argentinien"],
+        vehicles: ["Auto", "LKW", "Fahrrad", "Motorrad", "Flugzeug"]
+    },
+    sv: {
+        animals: ["Lejon", "Tiger", "Björn", "Elefant", "Giraff", "Hund", "Katt", "Fisk", "Kanin", "Snigel"],
+        fruits: ["Äpple", "Banan", "Körsbär", "Dadel", "Fläderbär", "Hallon"],
+        colors: ["Röd", "Blå", "Grön", "Gul", "Lila"],
+        countries: ["USA", "Kanada", "Mexiko", "Brasilien", "Argentina"],
+        vehicles: ["Bil", "Lastbil", "Cykel", "Motorcykel", "Flygplan"]
+    }
 };
 
 let numPlayers;
@@ -13,6 +43,11 @@ let imposterIndex;
 let discussionTime;
 let votes = [];
 let voteCount = {};
+let selectedLanguage = 'en';
+
+function changeLanguage() {
+    selectedLanguage = document.getElementById("language").value;
+}
 
 function startGame() {
     const category = document.getElementById("category").value.toLowerCase();
@@ -25,14 +60,14 @@ function startGame() {
     }
 
     playerWords = [];
-    const commonWordIndex = Math.floor(Math.random() * words[category].length);
-    const commonWord = words[category][commonWordIndex];
+    const commonWordIndex = Math.floor(Math.random() * words[selectedLanguage][category].length);
+    const commonWord = words[selectedLanguage][category][commonWordIndex];
     
     for (let i = 0; i < numPlayers; i++) {
         playerWords.push(commonWord);
     }
 
-    const imposterWordList = words[category].filter(word => word !== commonWord);
+    const imposterWordList = words[selectedLanguage][category].filter(word => word !== commonWord);
     const imposterWord = imposterWordList[Math.floor(Math.random() * imposterWordList.length)];
     
     imposterIndex = Math.floor(Math.random() * numPlayers);
@@ -41,6 +76,7 @@ function startGame() {
     document.getElementById("game-setup").style.display = "none";
     document.getElementById("game-play").style.display = "block";
     document.getElementById("player-words").innerHTML = `Player 1's turn`;
+    document.getElementById("reveal-button").disabled = false;
 }
 
 function revealWord() {
@@ -52,6 +88,7 @@ function revealWord() {
 
         let timeLeft = 5;
         timerElement.innerHTML = timeLeft;
+        document.getElementById("reveal-button").disabled = true;
         const countdown = setInterval(() => {
             timeLeft--;
             timerElement.innerHTML = timeLeft;
@@ -59,6 +96,7 @@ function revealWord() {
                 clearInterval(countdown);
                 timerElement.style.display = "none";
                 wordElement.innerHTML = `Pass the phone to the next player`;
+                document.getElementById("reveal-button").disabled = false;
                 currentPlayer++;
                 if (currentPlayer < numPlayers) {
                     wordElement.innerHTML = `Player ${currentPlayer + 1}'s turn`;
@@ -145,6 +183,7 @@ function restartGame() {
     votes = [];
     voteCount = {};
     playerWords = [];
+    document.getElementById("language").value = "en";
     document.getElementById("category").value = "animals";
     document.getElementById("num-players").value = "";
     document.getElementById("discussion-time").value = "180";
